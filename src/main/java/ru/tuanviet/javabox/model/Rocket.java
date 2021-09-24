@@ -3,7 +3,7 @@ package ru.tuanviet.javabox.model;
 public class Rocket {
 
     private double fuelAmount;
-    private boolean inSpace;
+    private boolean launched;
 
     /**
      * Launches the rocket.
@@ -17,7 +17,7 @@ public class Rocket {
         }
 
         fuelAmount = 0;
-        inSpace = true;
+        launched = true;
     }
 
     public void addFuelFrom(FuelContainer fuelContainer) {
@@ -25,6 +25,6 @@ public class Rocket {
     }
 
     public boolean isLaunched() {
-        return inSpace;
+        return launched;
     }
 }
