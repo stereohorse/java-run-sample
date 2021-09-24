@@ -243,3 +243,4 @@ $RECYCLE.BIN/
 
 .settings
 .vscode
+.mvn/wrapper/MavenWrapperDownloader.java
