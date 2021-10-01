@@ -9,13 +9,13 @@ public class App {
 }
 
 class Duck {
-    void say() {
-        System.out.println("Release the Kraken!");
+    String say() {
+        return "Release the Kraken!";
     }
 }
 
 class Penguin {
-    void say() {
-        System.out.println("All your base are belong to us");
+    String say() {
+        return "All your base are belong to us";
     }
 }
