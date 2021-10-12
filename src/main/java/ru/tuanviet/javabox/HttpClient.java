@@ -16,6 +16,7 @@ public class HttpClient {
     private final ObjectMapper objectMapper = new ObjectMapper();
     private final OkHttpClient client;
 
+
     public HttpClient() {
         this(10_000);
     }
@@ -32,6 +33,7 @@ public class HttpClient {
         return new HttpClient(timeoutMillis);
     }
 
+
     public <T> T fetch(String uri, Class<T> clazz) {
         try {
             return objectMapper.readValue(fetchBytes(uri), clazz);
@@ -39,6 +41,15 @@ public class HttpClient {
             throw new RuntimeException(e);
         }
     }
+
+    public <T> T fetch(String uri, TypeReference<T> type) {
+        try {
+            return objectMapper.readValue(fetchBytes(uri), type);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     private byte[] fetchBytes(String uri) {
         try {
@@ -49,14 +60,6 @@ public class HttpClient {
             try (Response response = client.newCall(request).execute()) {
                 return requireNonNull(response.body()).bytes();
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public <T> T fetch(String uri, TypeReference<T> type) {
-        try {
-            return objectMapper.readValue(fetchBytes(uri), type);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

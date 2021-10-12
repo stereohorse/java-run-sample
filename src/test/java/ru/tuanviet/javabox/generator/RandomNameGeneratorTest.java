@@ -1,8 +1,9 @@
-package ru.tuanviet.javabox;
+package ru.tuanviet.javabox.generator;
 
 import org.junit.Before;
 import org.junit.Test;
-import ru.tuanviet.javabox.RandomNameGenerator.GeneratePersonParams;
+import ru.tuanviet.javabox.Person;
+import ru.tuanviet.javabox.generator.RandomNameGenerator.GeneratePersonParams;
 
 import java.util.List;
 

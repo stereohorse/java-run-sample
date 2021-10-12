@@ -1,4 +1,4 @@
-package ru.tuanviet.javabox;
+package ru.tuanviet.javabox.generator;
 
 import java.util.List;
 import java.util.Random;

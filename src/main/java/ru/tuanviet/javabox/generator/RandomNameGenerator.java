@@ -1,4 +1,6 @@
-package ru.tuanviet.javabox;
+package ru.tuanviet.javabox.generator;
+
+import ru.tuanviet.javabox.Person;
 
 import java.util.List;
 
@@ -11,10 +13,6 @@ public class RandomNameGenerator {
         randomChooser = new JavaRandomListChooser();
     }
 
-    public RandomNameGenerator(RandomListElementChooser randomChooser) {
-        this.randomChooser = randomChooser;
-    }
-
 
     public Person generatePerson(GeneratePersonParams params) {
         if (params.getFirstParts() == null || params.getFirstParts().isEmpty()) {
@@ -22,7 +20,7 @@ public class RandomNameGenerator {
         }
 
         if (params.getSecondParts() == null || params.getSecondParts().isEmpty()) {
-            throw new IllegalArgumentException("second parts is null or null");
+            throw new IllegalArgumentException("second parts is null or empty");
         }
 
         final String firstName = randomChooser.nextFrom(params.getFirstParts());
@@ -42,7 +40,7 @@ public class RandomNameGenerator {
         this.randomChooser = randomChooser;
     }
 
-    static class GeneratePersonParams {
+    public static class GeneratePersonParams {
         private final List<String> firstParts;
         private final List<String> secondParts;
 
