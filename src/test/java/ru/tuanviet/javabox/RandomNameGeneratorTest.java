@@ -77,6 +77,20 @@ public class RandomNameGeneratorTest {
     }
 
     @Test
+    public void shouldGenerateWithSingleLengthArgs() {
+        // when
+        Person person = sutRandomGenerator.generatePerson(
+            GeneratePersonParams.builder()
+                .firstParts(asList("f"))
+                .secondParts(asList("s"))
+                .build()
+        );
+
+        // then
+        assertThat(person.toString()).isEqualTo("F S");
+    }
+
+    @Test
     public void shouldReturnCapitalizedName() {
         // when
         Person person = sutRandomGenerator.generatePerson(
