@@ -7,6 +7,7 @@ import ru.tuanviet.javabox.RandomNameGenerator.GeneratePersonParams;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SuppressWarnings("ArraysAsListWithZeroOrOneArgument")
@@ -18,40 +19,54 @@ public class RandomNameGeneratorTest {
         sutRandomGenerator = new RandomNameGenerator();
     }
 
-//    @Test(expected = IllegalArgumentException.class)
-//    public void shouldThrowIfFirstNamesAreNull() {
-//        new RandomNameGenerator().generatePerson(
-//                new GeneratePersonParams(null, asList("name1", "name2"))
-//        );
-//    }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void shouldThrowIfFirstNamesAreEmpty() {
-//        new RandomNameGenerator().generatePerson(
-//                new GeneratePersonParams(emptyList(), asList("name1", "name2")));
-//    }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void shouldThrowIfSecondNamesAreNull() {
-//        new RandomNameGenerator().generatePerson(
-//                new GeneratePersonParams(asList("name1", "name2"), null));
-//    }
-//
-//    @Test(expected = IllegalArgumentException.class)
-//    public void shouldThrowIfSecondNamesAreEmpty() {
-//        new RandomNameGenerator().generatePerson(
-//                new GeneratePersonParams(asList("name1", "name2"), emptyList()));
-//    }
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowIfFirstNamesAreNull() {
+        new RandomNameGenerator().generatePerson(
+            GeneratePersonParams.builder()
+                .firstParts(null)
+                .secondParts(asList("sname"))
+                .build()
+        );
+    }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowIfFirstNamesAreEmpty() {
+        new RandomNameGenerator().generatePerson(
+            GeneratePersonParams.builder()
+                .firstParts(emptyList())
+                .secondParts(asList("sname"))
+                .build()
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowIfSecondNamesAreNull() {
+        new RandomNameGenerator().generatePerson(
+            GeneratePersonParams.builder()
+                .firstParts(asList("fname"))
+                .secondParts(null)
+                .build()
+        );
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowIfSecondNamesAreEmpty() {
+        new RandomNameGenerator().generatePerson(
+            GeneratePersonParams.builder()
+                .firstParts(asList("fname"))
+                .secondParts(emptyList())
+                .build()
+        );
+    }
 
     @Test
     public void shouldReturnFromSingularInputs() {
         // when
         Person person = sutRandomGenerator.generatePerson(
-                GeneratePersonParams.builder()
-                        .firstParts(asList("fname"))
-                        .secondParts(asList("sname"))
-                        .build()
+            GeneratePersonParams.builder()
+                .firstParts(asList("fname"))
+                .secondParts(asList("sname"))
+                .build()
         );
 
         // then
@@ -61,10 +76,10 @@ public class RandomNameGeneratorTest {
     @Test
     public void shouldReceiveGenerateNameParams() {
         sutRandomGenerator.generatePerson(
-                GeneratePersonParams.builder()
-                        .firstParts(asList("name1", "name2"))
-                        .secondParts(asList("sname1", "sname2"))
-                        .build()
+            GeneratePersonParams.builder()
+                .firstParts(asList("name1", "name2"))
+                .secondParts(asList("sname1", "sname2"))
+                .build()
         );
     }
 
@@ -75,10 +90,10 @@ public class RandomNameGeneratorTest {
 
         // when
         Person person = sutRandomGenerator.generatePerson(
-                GeneratePersonParams.builder()
-                        .firstParts(asList("fname1", "fname2"))
-                        .secondParts(asList("sname1", "sname2", "sname3"))
-                        .build()
+            GeneratePersonParams.builder()
+                .firstParts(asList("fname1", "fname2"))
+                .secondParts(asList("sname1", "sname2", "sname3"))
+                .build()
         );
 
         // then
@@ -87,12 +102,12 @@ public class RandomNameGeneratorTest {
 
     @Test
     public void shouldReturnCapitalizedName() {
-
+        // TODO: continue test here
     }
 
     private void randomChooserWillReturnOnNextCalls(int... indices) {
         sutRandomGenerator.setRandomChooser(
-                new PredictableRandomGenerator(indices)
+            new PredictableRandomGenerator(indices)
         );
     }
 }
