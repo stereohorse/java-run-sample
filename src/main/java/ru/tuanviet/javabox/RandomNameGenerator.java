@@ -28,7 +28,14 @@ public class RandomNameGenerator {
         final String firstName = randomChooser.nextFrom(params.getFirstParts());
         final String secondName = randomChooser.nextFrom(params.getSecondParts());
 
-        return new Person(firstName, secondName);
+        return new Person(
+            capitalize(firstName),
+            capitalize(secondName)
+        );
+    }
+
+    private String capitalize(String str) {
+        return str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase();
     }
 
     public void setRandomChooser(RandomListElementChooser randomChooser) {

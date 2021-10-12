@@ -60,30 +60,6 @@ public class RandomNameGeneratorTest {
     }
 
     @Test
-    public void shouldReturnFromSingularInputs() {
-        // when
-        Person person = sutRandomGenerator.generatePerson(
-            GeneratePersonParams.builder()
-                .firstParts(asList("fname"))
-                .secondParts(asList("sname"))
-                .build()
-        );
-
-        // then
-        assertThat(person.toString()).isEqualTo("fname sname");
-    }
-
-    @Test
-    public void shouldReceiveGenerateNameParams() {
-        sutRandomGenerator.generatePerson(
-            GeneratePersonParams.builder()
-                .firstParts(asList("name1", "name2"))
-                .secondParts(asList("sname1", "sname2"))
-                .build()
-        );
-    }
-
-    @Test
     public void shouldGenerateWithMultipleNamesInArgs() {
         // given
         randomChooserWillReturnOnNextCalls(0, 2);
@@ -97,12 +73,21 @@ public class RandomNameGeneratorTest {
         );
 
         // then
-        assertThat(person.toString()).isEqualTo("fname1 sname3");
+        assertThat(person.toString()).isEqualTo("Fname1 Sname3");
     }
 
     @Test
     public void shouldReturnCapitalizedName() {
-        // TODO: continue test here
+        // when
+        Person person = sutRandomGenerator.generatePerson(
+            GeneratePersonParams.builder()
+                .firstParts(asList("fname1"))
+                .secondParts(asList("sname1"))
+                .build()
+        );
+
+        // then
+        assertThat(person.toString()).isEqualTo("Fname1 Sname1");
     }
 
     private void randomChooserWillReturnOnNextCalls(int... indices) {
