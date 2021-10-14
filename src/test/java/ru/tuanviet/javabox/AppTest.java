@@ -21,7 +21,7 @@ public class AppTest {
 
     @Test
     public void shouldGenerateRandomName() {
-        // then
+        // given
         final String namesServiceUri = serviceWithResponse("/names-service", "names-success.json");
         final String nounsServiceUri = serviceWithResponse("/nouns-service", "nouns-success.json");
 
